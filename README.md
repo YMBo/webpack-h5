@@ -2,7 +2,17 @@
 开发h5页面时，为了能更方便的使用es6/7、less、模块机制、方便处理静态资源等写了这个webpack配置
 
 ## 使用
-npm install or cnpm install
+npm install or cnpm install  
+
+## 模式    
+``` javascript
+1. npm run build (默认，提取js和css)    
+2. npm run buildInline（内嵌，js和css内嵌到html且压缩）
+3. npm run buildInlinecss（内嵌css，提取js文件，内嵌css）
+4. npm run buildInlinejs（内嵌js，提取css文件，内嵌js）
+```    
+tip:不论哪种模式`setSize`这个包都会插入到html，原因是为了让html页面初始化更快速度    
+
 
 ## 开发注意
 因为html-webpack-plugin和html-withimg-loader冲突，所以在使用页面模板和引入图片时有以下注意：    
