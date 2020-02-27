@@ -25,24 +25,27 @@ module.exports = utils.pushHtmlWebpackPlugins(
                 server._watch(path.join(__dirname, '../src/pages'))
             },
         },
-        module:{
-            rules:[{
-				test: /\.css$/,
-				use: [
-					'style-loader',
-					'css-loader',
-                ],
-                include:  path.join(__dirname, '../src/'),
-			},
-			{
-				test: /\.less$/,
-				use: [
-					'style-loader',
-					'css-loader',
-					'less-loader'
-                ],
-                include:  path.join(__dirname, '../src/'),
-			}]
+        module: {
+            rules: [{
+                    test: /\.css$/,
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        'postcss-loader'
+                    ],
+                    include: path.join(__dirname, '../src/'),
+                },
+                {
+                    test: /\.less$/,
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        'postcss-loader',
+                        'less-loader',
+                    ],
+                    include: path.join(__dirname, '../src/'),
+                }
+            ]
         },
         plugins: [
             /*热更新*/

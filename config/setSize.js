@@ -1,14 +1,15 @@
-(function (psdw) {
+// 传设计稿的宽度即可
+(function(psdw) {
     // 设置布局视口宽度=设备宽度
-    var meta = document.createElement('meta');
+    var meta = window.document.createElement('meta');
     var metaContent = 'width=device-width';
     meta.name = 'viewport';
     meta.content = metaContent;
-    var child = document.head.children[0];
+    var child = window.document.head.children[0];
     document.head.insertBefore(meta, child);
 
     // 布局视口宽度
-    var el = document.documentElement;
+    var el = window.document.documentElement;
     var width = el.clientWidth;
 
     // 缩放比例   
@@ -21,4 +22,5 @@
     el.style = "font-size:" + rem + "px!important";
     dpr = window.devicePixelRatio || 1;
     el.setAttribute('data-drp', dpr);
-})(750)
+    return rem
+})(require("./config.js").PSWD)

@@ -1,18 +1,19 @@
-
 // 引入less
 import './css/a.less';
-import {setHref} from '@/static/js/common'
+import { setHref } from '@/static/js/common'
 setHref('/about.html')
-function get(){
+console.log($, '全局jquery')
+
+function get() {
     console.log(2)
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve('触发')
+            resolve('async')
         }, 3000);
     })
 }
-async function b(){
-    let m =await get()
+async function b() {
+    let m = await get()
     console.log(m)
 }
 b()
