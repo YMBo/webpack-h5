@@ -30,5 +30,5 @@ npm install or cnpm install
         ```    
     * 引入图片    
         ``` html
-    <img src="<%= require('./img/a.jpg')%>" alt="" width="300">
+        <img src="<%= require('./img/a.jpg')%>" alt="" width="300">
         ```
