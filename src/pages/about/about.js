@@ -1,4 +1,4 @@
-
 import '../home/css/a';
-import {setHref} from '@/static/js/common'
+import '@/static/css/index.css';
+import { setHref } from '@/static/js/common'
 setHref('/index.html')

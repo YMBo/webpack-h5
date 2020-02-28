@@ -18,7 +18,6 @@ class ChunksFromEntryPlugin {
                     // takes entry name passed via HTMLWebpackPlugin's options
                     // 获取
                     const entry = plugin.options.chunks;
-
                     // 获取所有入口
                     let entrypoint = []
                     let name = new Set()

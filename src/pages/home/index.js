@@ -1,6 +1,9 @@
 // 引入less
+import '@/static/css/index.css';
 import './css/a.less';
+import './css/home.css';
 import { setHref } from '@/static/js/common'
+
 setHref('/about.html')
 console.log($, '全局jquery')
 

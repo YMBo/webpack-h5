@@ -1,14 +1,17 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path')
 const webpackBaseConfig = require('./webpack.base.config');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('webpack-merge');
 const utils = require('../utils');
-const extractCSS = new ExtractTextPlugin('static/css/[name].[hash:7].css');
-const extractLESS = new ExtractTextPlugin('static/css/[name].[hash:7].css');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const config = require("./config.js");
+// const extractCSS = new ExtractTextPlugin('static/css/[name].[hash:7].css');
+// const extractLESS = new ExtractTextPlugin('static/css/[name].[hash:7].css');
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const cssInlineMode = process.env.MODE ? (config.INLINE == process.env.MODE || config.INLINECSS == process.env.MODE) : undefined
 
 let prodWebpackConfig = {
     stats: {
@@ -28,8 +31,11 @@ let prodWebpackConfig = {
             sourceMap: true,
             parallel: true,
         }),
-        extractCSS,
-        extractLESS,
+        // extractCSS,
+        // extractLESS,
+        new MiniCssExtractPlugin({
+            filename: 'static/css/[name].[hash:7].css'
+        }),
         // 压缩css，解决ExtractTextPlugin重复打包的问题
         new OptimizeCssAssetsPlugin(),
         new BundleAnalyzerPlugin({
@@ -53,16 +59,18 @@ let prodWebpackConfig = {
     ],
     module: {
         rules: [{
-                test: /\.css$/,
-                use: extractCSS.extract(['css-loader', 'postcss-loader']),
-                include: path.join(__dirname, '../src/'),
-            },
-            {
-                test: /\.less$/,
-                use: extractLESS.extract(['css-loader', 'postcss-loader', 'less-loader']),
-                include: path.join(__dirname, '../src/'),
-            }
-        ]
+            test: /\.(le|c)ss$/,
+            use: [{
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                    // 这里可以指定一个 publicPath
+                    // 默认使用 webpackOptions.output中的publicPath
+                    // 针对css中引用的静态资源，图片等的路径
+                    publicPath: cssInlineMode ? './' : '../../'
+                },
+            }, 'css-loader', 'postcss-loader', 'less-loader'],
+            include: path.join(__dirname, '../src/'),
+        }, ]
     },
     optimization: {
         /*
