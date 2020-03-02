@@ -2,7 +2,8 @@
 开发h5页面时，为了能更方便的使用es6/7、less、模块机制、方便处理静态资源等写了这个webpack配置
 
 ## 使用
-npm install or cnpm install  
+1. npm install or cnpm install    
+2. `config/config.js` 设置好PSWD设计稿的宽度即可
 
 ## 模式    
 ``` javascript
