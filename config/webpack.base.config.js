@@ -28,7 +28,7 @@ module.exports = {
             // html中的img标签
             {
                 test: /\.(html)$/i,
-                loader: 'html-withimg-loader',
+                loader: 'html-withimg-loader?min=false',
                 include: [path.join(__dirname, '../src')],
 
                 // 不能加下面这个options ， html-webpack-plugin会报错

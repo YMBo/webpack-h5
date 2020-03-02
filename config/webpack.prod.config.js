@@ -21,15 +21,15 @@ let prodWebpackConfig = {
         chunkModules: false
     },
     mode: 'production',
-    devtool: 'source-map',
     // 静态资源引入路径前缀信息
     output: {
         publicPath: '',
     },
     plugins: [
         new UglifyJsPlugin({
-            sourceMap: true,
-            parallel: true,
+            parallel: true, // 开启并行压缩，充分利用cpu
+            sourceMap: false,
+            extractComments: true, // 移除注释
         }),
         // extractCSS,
         // extractLESS,
